@@ -10,11 +10,33 @@
 		<description>二维码的增删改查</description>
 		<servlet-class>cn.ck.edm.action.QrCodeAction</servlet-class>
 	</servlet>
+  <servlet>
+    <servlet-name>ImpContactsAction</servlet-name>
+    <display-name>导入通讯录</display-name>
+    <description>导入通讯录数据</description>
+    <servlet-class>cn.ck.edm.action.ImpContactsAction</servlet-class>
+  </servlet>
+  <servlet>
+    <description>通讯录管理</description>
+    <display-name>通讯录</display-name>
+    <servlet-name>ContactsAction</servlet-name>
+    <servlet-class>cn.ck.edm.action.ContactsAction</servlet-class>
+  </servlet>
+
+
 
 	<servlet-mapping>
 		<servlet-name>qrCode</servlet-name>
 		<url-pattern>/qrCode</url-pattern>
 	</servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ImpContactsAction</servlet-name>
+    <url-pattern>/impContacts</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ContactsAction</servlet-name>
+    <url-pattern>/contacts</url-pattern>
+  </servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 		<welcome-file>index.jsp</welcome-file>

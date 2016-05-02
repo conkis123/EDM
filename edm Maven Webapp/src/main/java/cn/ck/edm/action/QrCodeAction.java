@@ -1,7 +1,6 @@
 package cn.ck.edm.action;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Hashtable;
 
 import javax.servlet.ServletException;
@@ -71,14 +70,16 @@ public class QrCodeAction extends HttpServlet {
 	public void getQrCode(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		//设置页面不缓存  
 		response.setHeader("Cache-Control", "no-cache");
-		String text = "你好 http://192.168.199.126:8080/CSP/core/main/index";
+		
+		String phone = request.getParameter("phone");
+		//String text = "你好 http://192.168.199.126:8080/CSP/core/main/index";
 		int width = 120;
 		int height = 120;
 		String format = "png";
 		Hashtable hints = new Hashtable();
 		hints.put(EncodeHintType.CHARACTER_SET, "utf-8");
-		BitMatrix bitMatrix = new MultiFormatWriter().encode(text, BarcodeFormat.QR_CODE, width, height, hints);
-		
+		BitMatrix bitMatrix = new MultiFormatWriter().encode("TEL:"+ phone, BarcodeFormat.QR_CODE, width, height, hints);
+		System.out.println("生成二维码");
 		 //设置输出的内容的类型为png图像
 		response.setContentType(format);
 		//写给浏览器 

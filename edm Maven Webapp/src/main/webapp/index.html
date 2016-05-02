@@ -30,7 +30,7 @@
         <tr>
             <th w_index="no" width="8%;">工号</th>
             <th w_index="dep" width="7%;">部门</th>
-            <th w_index="dep_child" w_align="left" width="15%;">子部门</th>
+            <!-- <th w_index="dep_child" w_align="left" width="15%;">子部门</th> -->
             <th w_index="post" w_align="left" width="15%;">岗位&职务</th>
             <th w_index="name" width="10%;">姓名</th>
             <th w_index="sex" width="10%;">性别</th>
@@ -65,8 +65,8 @@
         var gridObj;
         $(function () {
             gridObj = $.fn.bsgrid.init('searchTable', {
-                //url: 'data/json.jsp',
-                localData:data,
+                url: 'contacts',
+                //localData:data,
                 event: {
 	                customRowEvents: {
 	                    click: function (record, rowIndex, trObj, options) {
@@ -85,17 +85,25 @@
                 pageSize: 8
             });
         });
-		function  showImg(rowIndex){
-			document.getElementById("wxImg"+ rowIndex).style.backgroundImage = "url(images/code.png)";
-			document.getElementById("wxImg"+ rowIndex).style.display='block';
+		function  showImg(rowIndex, phone){
+            var rowObj = gridObj.getRow(rowIndex)[0];
+			//document.getElementById("wxImg"+ rowIndex).style.backgroundImage = "url(images/code.png)";
+			if(document.getElementById("wxImg"+ rowIndex).src == ""){
+                document.getElementById("wxImg"+ rowIndex).src = "qrCode?phone="+ phone;
+			}
+			document.getElementById("wxImgDiv"+ rowIndex).style.display='block';
 		}
 		function hideImg(rowIndex){
-			document.getElementById("wxImg"+ rowIndex).style.display='none';
+			document.getElementById("wxImgDiv"+ rowIndex).style.display='none';
 		}
         function phone(record, rowIndex, colIndex, options) {
-            return '<a href="#" onMouseOut="hideImg('+ rowIndex +')"  onmouseover="showImg('+ rowIndex +')">'
-            + gridObj.getRecordIndexValue(record, 'phone') +'</a><div id="wxImg'+ rowIndex +'" '
-            + 'class="phoneQrCode"></div>';
+            //return '<a href="#" onMouseOut="hideImg('+ rowIndex +')"  onmouseover="showImg('+ rowIndex +')">'
+            //+ gridObj.getRecordIndexValue(record, 'phone') +'</a><div id="wxImg'+ rowIndex +'" '
+           // + 'class="phoneQrCode"></div>';
+            var phone = gridObj.getRecordIndexValue(record, 'phone');
+            return '<a href="#" onMouseOut="hideImg('+ rowIndex +')"  onmouseover="showImg('+ rowIndex +','+ phone +')">'
+            + phone +'</a><div id="wxImgDiv'+ rowIndex +'" '
+            + 'class="phoneQrCode"><img id="wxImg'+ rowIndex +'" style="width:100%; height:100%;"/></div>';
         }
         
         

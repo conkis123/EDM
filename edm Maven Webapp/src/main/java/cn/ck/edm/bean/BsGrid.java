@@ -1,5 +1,12 @@
 package cn.ck.edm.bean;
 
+/** 
+* @ClassName: BsGrid 
+* @Description: BsGrid表格对象类
+* @author Conkis-ac
+* @date 2016年5月3日 下午8:26:23 
+*  
+*/
 public class BsGrid {
 	private int curPage;
 	private int totalRows;

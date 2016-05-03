@@ -2,12 +2,13 @@ package cn.ck.edm.bean;
 
 import java.io.Serializable;
 
-
-/**
- * 联系人
- * @author Conkis-ac
- *
- */
+/** 
+* @ClassName: Contacts 
+* @Description: 联系人实体类
+* @author Conkis-ac
+* @date 2016年5月3日 下午8:27:01 
+*  
+*/
 public class Contacts implements Serializable {
 	public String no; // 工号
 	public String dep; // 部门

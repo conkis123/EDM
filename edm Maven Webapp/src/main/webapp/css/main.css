@@ -1,0 +1,24 @@
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, button, textarea, p, blockquote, th, td {
+    margin: 0;
+    padding: 0;
+}
+
+
+/* ºÊ»› IE7 begin */
+input.text{
+    height:18px;
+    font-size:12px;
+    line-height:16px;
+    border:1px solid #ccc;
+}
+/* ºÊ»› IE7 end */
+
+input[type="text"]{
+    height:18px;
+    font-size:12px;
+    line-height:16px;
+    border:1px solid #ccc;
+}
+textarea{
+    border:1px solid #ccc;
+}

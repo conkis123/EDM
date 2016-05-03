@@ -81,17 +81,17 @@ public class ContactsAction extends HttpServlet {
 		response.setCharacterEncoding("UTF-8"); //设置编码格式 
 		response.setContentType("text/html");   //设置数据格式
 		
-		String pageSize = request.getParameter("pageSize");
-		String curPage = request.getParameter("curPage");
-		String sortName = request.getParameter("sortName");
-		String sortOrder = request.getParameter("sortOrder");
+//		String pageSize = request.getParameter("pageSize");
+//		String curPage = request.getParameter("curPage");
+//		String sortName = request.getParameter("sortName");
+//		String sortOrder = request.getParameter("sortOrder");
 
 		List<Contacts> list = (List<Contacts>)FileUtil.readObjectFromFile("data/contacts.bin");
 
 		PrintWriter writer = response.getWriter();
 		
 		BsGrid bs = new BsGrid();
-		bs.setCurPage(Integer.parseInt(curPage));
+//		bs.setCurPage(Integer.parseInt(curPage));
 		
 		if(list == null || list.size() == 0){
 			bs.setTotalRows(0);

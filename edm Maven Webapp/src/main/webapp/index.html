@@ -7,6 +7,7 @@
     <meta name="description" content="this is my page">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     
+    <link rel="stylesheet" href="css/main.css"/>
     <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
  	<link rel="stylesheet" href="lib/jquerybsgrid/1.37/merged/bsgrid.all.min.css"/>
     <script type="text/javascript" src="lib/jquery/1.11.2/jquery-1.4.4.min.js"></script>
@@ -14,6 +15,33 @@
     <script type="text/javascript" src="lib/jquerybsgrid/1.37/merged/bsgrid.all.min.js"></script>
     
 	<style type="text/css">
+	.head{
+	    background-color: #f5f5f5;
+	    border-bottom: 1px solid #e5e5e5;
+	    margin-bottom: 10px;
+	}
+	.conter{
+        width: 980px;
+        margin-right: auto;
+        margin-left: auto;
+	}
+	.centent{
+	   width:100%;
+        float: left;
+	}
+	.left{
+		padding-right: 10px;
+	    padding-left: 10px;
+	    width: 25%;
+	    height: 100%; 
+	    float: left; 
+	    background-color: #f9f9f9;
+    }
+    .right{
+        width:75%;
+		height: 100%;
+		float: left;
+    }
 	.phoneQrCode{
 		display:none;
 		width:120px;
@@ -23,50 +51,48 @@
 		position:absolute;
 	}
 	</style>
+	<script type="text/javascript">
+	    $(function(){
+	       $("#div_main").height($(window).height() - $("#div_head").height() - 12);
+	       //$("#div_right").width($("#div_main").width() - $("#div_left").width());
+	    });
+	</script>
   </head>
   
   <body>
-    <table id="searchTable">
-        <tr>
-            <th w_index="no" width="8%;">工号</th>
-            <th w_index="dep" width="7%;">部门</th>
-            <!-- <th w_index="dep_child" w_align="left" width="15%;">子部门</th> -->
-            <th w_index="post" w_align="left" width="15%;">岗位&职务</th>
-            <th w_index="name" width="10%;">姓名</th>
-            <th w_index="sex" width="10%;">性别</th>
-            <th w_index="workPhone" width="5%;">直线</th>
-            <th w_index="ext" width="5%;">分机</th>
-            <th w_render="phone" width="5%;">手机</th>
-            <th w_index="eEmail" width="5%;">企业邮箱</th>
-            <th w_index="backupEmail" width="5%;">备用邮箱</th>
-            <th w_index="qq" width="5%;">QQ号</th>
-            <th w_render="operate" width="10%;">操作</th>
-        </tr>
-    </table>
+	  <div id="div_main" style="width: 100%;">
+	    <div id="div_head" class="head" style="width: 100%; height: 40px;"></div>
+        <div class="conter">
+		    <div id="div_centent" class="centent">
+		       <div id="div_left" class="left"></div>
+		        <div id="div_right" class="right">
+		            <table id="searchTable">
+		                <tr>
+		                    <th w_index="no" width="8%;">工号</th>
+		                    <th w_index="dep" width="7%;">部门</th>
+		                    <!-- <th w_index="dep_child" w_align="left" width="15%;">子部门</th> -->
+		                    <!-- <th w_index="post" w_align="left" width="15%;">岗位&职务</th> -->
+		                    <th w_index="name" width="10%;">姓名</th>
+		                    <th w_index="sex" width="10%;">性别</th>
+		                    <th w_render="phone" width="5%;">手机</th>
+		                    <th w_index="workPhone" width="5%;">直线</th>
+		                    <th w_index="ext" width="5%;">分机</th>
+		                    <th w_index="eEmail" width="5%;">企业邮箱</th>
+		                    <!-- <th w_index="backupEmail" width="5%;">备用邮箱</th>
+		                    <th w_index="qq" width="5%;">QQ号</th> -->
+		                    <th w_render="operate" width="10%;">操作</th>
+		                </tr>
+		            </table>
+		        </div>
+		    </div>
+        </div>
+	  </div>
 	<script type="text/javascript">
-		var data = [
-				{"no":"SWSK002","dep":"GIS事业部","depChild":"/","post":"副总经理&GIS事业部总经理","name":"李建军","sex":"男","workPhone":"86292692","ext":"692","phone":"13706998252","eEmail":"lijj@3d-space.cn","backupEmail":"486732@qq.com","qq":"486732"},
-				{"no":"SWSK005","dep":"GIS事业部","depChild":"平台产品组","post":"组长","name":"黄旭煜","sex":"男","workPhone":"86292605","ext":"605","phone":"15959006634","eEmail":"huangxy@3d-space.cn","backupEmail":"7539328@qq.com","qq":"7539328"},
-				{"no":"SWSK003","dep":"GIS事业部","depChild":"平台产品组","post":"软件开发工程师","name":"林朝佳","sex":"男","workPhone":"86292605","ext":"605","phone":"15959159803","eEmail":"lincj@3d-space.cn","backupEmail":"263983615@qq.com","qq":"263983615"},
-				{"no":"实习期","dep":"GIS事业部","depChild":"平台产品组","post":"软件开发工程师","name":"陈凯","sex":"男","workPhone":"86292610","ext":"610","phone":"18859142872","eEmail":"","backupEmail":"conkis@163.com","qq":"76941058"},
-				{"no":"SWSK011","dep":"GIS事业部","depChild":"应用项目组","post":"项目经理","name":"吴玉年","sex":"男","workPhone":"86292610","ext":"610","phone":"18650096608","eEmail":"wuyn@3d-space.cn","backupEmail":"709829008@qq.com","qq":"709829008"},
-				{"no":"SWSK004","dep":"GIS事业部","depChild":"应用项目组","post":"软件开发工程师","name":"叶凌峰","sex":"男","workPhone":"86292610","ext":"610","phone":"18650657101","eEmail":"yelf@3d-space.cn","backupEmail":"657113546@qq.com","qq":"657113546"},
-				{"no":"试用期","dep":"GIS事业部","depChild":"应用项目组","post":"软件开发工程师","name":"郑国赞","sex":"男","workPhone":"86292605","ext":"605","phone":"15345045270","eEmail":"zgz@3d-space.cn","backupEmail":"15345045270@163.com","qq":"1452562547"},
-				{"no":"试用期","dep":"GIS事业部","depChild":"空间数据组","post":"数据处理","name":"李丹","sex":"女","workPhone":"86292607","ext":"607","phone":"13950264548","eEmail":"lid@3d-space.cn","backupEmail":"781478995@qq.com","qq":"781478995"},
-				{"no":"SWSK009","dep":"GIS事业部","depChild":"质量控制组","post":"组长","name":"朱政勇","sex":"男","workPhone":"86292607","ext":"607","phone":"15960105272","eEmail":"zhuzy@3d-space.cn","backupEmail":"358624165@qq.com","qq":"358624165"},
-				{"no":"SWSK026","dep":"GIS事业部","depChild":"UI设计组","post":"UI设计师","name":"钟才凤","sex":"女","workPhone":"86292607","ext":"607","phone":"13600883050","eEmail":"zhongcf@3d-space.cn","backupEmail":"zcfdream@163.com","qq":"271775167"},
-				{"no":"SWSK006","dep":"系统集成事业部","depChild":"/","post":"系统集成事业部经理","name":"陈明容","sex":"男","workPhone":"86292697","ext":"697","phone":"13705007281","eEmail":"chenmr@3d-space.cn","backupEmail":"cmr8012@163.com","qq":"34244381"},
-				{"no":"SWSK019","dep":"系统集成事业部","depChild":"工程设计与服务组","post":"工程师","name":"林青","sex":"男","workPhone":"86292670","ext":"670","phone":"18959125436","eEmail":"linq@3d-space.cn","backupEmail":"1294747798@qq.com","qq":"1294747798"},
-				{"no":"SWSK007","dep":"系统集成事业部","depChild":"工程设计与服务组","post":"工程师","name":"庄敦瑞","sex":"男","workPhone":"86292671","ext":"671","phone":"15005970025","eEmail":"zhuangxr@3d-space.cn","backupEmail":"125918821@qq.com","qq":"125918821"},
-				{"no":"SWSK008","dep":"行政人事部","depChild":"/","post":"行政人事部经理","name":"王琳琳","sex":"女","workPhone":"83379342","ext":"630","phone":"18259088249","eEmail":"wangll@3d-space.cn","backupEmail":"1041967858@qq.com","qq":"1041967858"},
-				{"no":"SWSK024","dep":"行政人事部","depChild":"/","post":"行政专员","name":"赵鑫","sex":"女","workPhone":"86292670","ext":"670","phone":"13960821336","eEmail":"zhaox@3d-space.cn","backupEmail":"50156237@qq.com","qq":"50156237"}
-			];
 		var curRowIdx = null;
         var gridObj;
         $(function () {
             gridObj = $.fn.bsgrid.init('searchTable', {
                 url: 'contacts',
-                //localData:data,
                 event: {
 	                customRowEvents: {
 	                    click: function (record, rowIndex, trObj, options) {
@@ -109,7 +135,7 @@
         
         
         function operate(record, rowIndex, colIndex, options) {
-            return '<a href="#" onclick="alert(\'ID=' + gridObj.getRecordIndexValue(record, 'ID') + '\');">Operate</a>';
+            return '<a href="#" onclick="alert(\'ID=' + gridObj.getRecordIndexValue(record, 'ID') + '\');">更多</a>';
         }
     </script>
   </body>

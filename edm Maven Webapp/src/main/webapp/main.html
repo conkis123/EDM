@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>企业通讯录</title>
+
+<!-- Bootstrap -->
+<link href="lib/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+<!-- <link href="lib/bootstrap/3.3.5/css/bootstrap-theme.min.css" rel="stylesheet"> -->
+
+<!-- <link href="lib/DataTables/1.10.11/css/dataTables.bootstrap.min.css" rel="stylesheet"> -->
+<link href="lib/DataTables/1.10.11/css/jquery.dataTables.min.css" rel="stylesheet">
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+      <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+<style type="text/css">
+body{
+    padding-top: 70px;
+}
+.head {
+    background-color: #f5f5f5;
+    border-bottom: 1px solid #e5e5e5;
+}
+.navbar-header span{
+    margin-left: 10px;
+    line-height: 40px;
+    font-size: 24px;
+    font-weight: 900;
+}
+
+.phoneQrCode {
+    display: none;
+    width: 120px;
+    height: 120px;
+    z-index: 999;
+    border: 2px solid #000;
+    position: absolute;
+}
+</style>
+</head>
+<body>
+    <!-- <div id="div_head" class="head" style="width: 100%; height: 40px;"></div> -->
+    <nav class="navbar navbar-fixed-top navbar-inverse head">
+	    <div class="container">
+	       <div class="navbar-header">
+	           <span>EDM</span>
+	    <!-- <div class="row">
+	        <div class="col-md-12 head">
+	            <span>EDM</span>
+	        </div>
+	    </div> -->
+	       </div>
+	    </div>
+    </nav>
+    <div class="container">
+        <div class="row row-offcanvas row-offcanvas-right" style="">
+            <div class="col-md-2" style="background-color: #f9f9f9;">
+                <div class="list-group">
+                    <a href="#" class="list-group-item active">菜单</a>
+                    <a href="#" class="list-group-item">联系人列表</a>
+                    <a href="#" class="list-group-item">Morbi</a>
+                    <a href="#" class="list-group-item">Porta</a>
+                    <a href="#" class="list-group-item">Vestibulum</a>
+                </div>
+            </div>
+            <div class="col-md-10">
+                <table id="example" class="display" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th>工号</th>
+                            <th>部门</th>
+                            <th>姓名</th>
+                            <th>性别</th>
+                            <th>手机</th>
+                            <th>直线</th>
+                            <th>分机</th>
+                            <th>企业邮箱</th>
+                            <!-- <th w_render="operate" width="10%;">操作</th> -->
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="lib/jquery/1.11.2/jquery-1.11.2.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="lib/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script charset="utf8" src="lib/DataTables/1.10.11/js/jquery.dataTables.js"></script>
+
+    <script type="text/javascript">
+        function  showImg(rowIndex, phone){
+            if(document.getElementById("wxImg"+ rowIndex).src == ""){
+                document.getElementById("wxImg"+ rowIndex).src = "qrCode?phone="+ phone;
+            }
+            document.getElementById("wxImgDiv"+ rowIndex).style.display='block';
+        }
+        function hideImg(rowIndex){
+            document.getElementById("wxImgDiv"+ rowIndex).style.display='none';
+        }
+        
+        
+        $(document).ready(function() {
+            var table = $('#example').DataTable({
+                "language": {
+                    "url": "lib/DataTables/1.10.11/lang/Chinese.json"
+                },
+                "ajax" : 'contacts',
+                "pagingType": "full_numbers",
+                "order": [],
+                "columns": [
+                            { "data": "no" },
+                            { "data": "dep" },
+                            { "data": "name" },
+                            { "data": "sex" },
+                            { "data": "phone" },
+                            { "data": "workPhone" },
+                            { "data": "ext" },
+                            { "data": "eEmail" }
+                        ],
+                "columnDefs": [// 将Salary列变为红色
+                    {
+                        "targets": [4], // 目标列位置，下标从0开始
+                        "data": "phone", // 数据列名
+                        "render": function(data, type, row, meta) { // 返回自定义内容
+                            return '<a href="#" onMouseOut="hideImg('+ meta.row +')"  onmouseover="showImg('+ meta.row +','+ data +')">'
+                            + data +'</a><div id="wxImgDiv'+ meta.row +'" '
+                            + 'class="phoneQrCode"><img id="wxImg'+ meta.row +'" style="width:100%; height:100%;"/></div>';
+                        }
+                    }
+                 ]
+            });
+        });
+   </script>
+</body>
+</html>

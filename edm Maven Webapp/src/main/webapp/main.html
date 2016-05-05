@@ -83,6 +83,7 @@ body{
                             <th>直线</th>
                             <th>分机</th>
                             <th>企业邮箱</th>
+                            <th>操作</th>
                             <!-- <th w_render="operate" width="10%;">操作</th> -->
                         </tr>
                     </thead>
@@ -125,7 +126,8 @@ body{
                             { "data": "phone" },
                             { "data": "workPhone" },
                             { "data": "ext" },
-                            { "data": "eEmail" }
+                            { "data": "eEmail" },
+                            { "data": "operate" }
                         ],
                 "columnDefs": [// 将Salary列变为红色
                     {
@@ -135,6 +137,13 @@ body{
                             return '<a href="#" onMouseOut="hideImg('+ meta.row +')"  onmouseover="showImg('+ meta.row +','+ data +')">'
                             + data +'</a><div id="wxImgDiv'+ meta.row +'" '
                             + 'class="phoneQrCode"><img id="wxImg'+ meta.row +'" style="width:100%; height:100%;"/></div>';
+                        }
+                    },
+                    {
+                        "targets": [8], // 目标列位置，下标从0开始
+                        "data": "operate", // 数据列名
+                        "render": function(data, type, row, meta) { // 返回自定义内容
+                            return '<button type="button" class="btn btn-info">详细</button>';
                         }
                     }
                  ]
